@@ -102,5 +102,4 @@ function Mic (_fft) {
   };
 
 
-
 var mic = new Mic();
