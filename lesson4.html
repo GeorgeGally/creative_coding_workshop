@@ -19,7 +19,8 @@
 
 // LET's ADD SOUND
 
-
+var smile = new Image();
+smile.src = 'img/smile.png';
 var ctx = createCanvas("canvas1");
 ctx.lineWidth = 2;
 var Sound = new soundCloud(512);
@@ -42,6 +43,7 @@ function draw(){
     addBall();
   }
   ctx.background(250);
+  ctx.fillStyle = "#cc0000";
   var vol = Sound.getVolume()
   ctx.fillStyle = rgb(240)
   ctx.fillRect(0, h- vol, w, vol);
@@ -70,7 +72,8 @@ function Ball(_x, _y){
 
   this.drawBall = function(){
     ctx.fillStyle = this.colour;
-    ctx.fillRect(this.x, this.y-this.block_size, spacing-1, this.block_size);
+    //ctx.fillRect(this.x, this.y-this.block_size, spacing-1, this.block_size);
+    ctx.drawImage(smile, this.x,this.y)
   }
 
   this.moveBall = function(){
@@ -87,7 +90,6 @@ function Ball(_x, _y){
   }
 
 }
-
 
 
 </script>

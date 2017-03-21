@@ -6,22 +6,21 @@ var soundCloud = function(_fft_size) {
   var body = document.querySelector('body');
   var client_id = "a02d202ac1397c777070cd10fbe015c5"; // to get an ID go to http://developers.soundcloud.com/
 
-  // exposes audioChannelVolume
-  var audioChannelVolume = [];
 
-  var mix = [];
-  var volume = [];
   var audioCtx;
+  var audioElement;
   this.analyser;
   this.source;
-  this.volumeLow = 0;
-  this.volumeHi = 0;
   this.streamData;
   this.sound = {};
-  // this.fft_size = fft_size || 256;
+  this.freqs = [];
   this.fft_size = _fft_size || 256;
   var self = this;
   var player;
+
+  // UI stuff
+
+  var audioplayer, trackImageLink, trackImage, trackInfo, artistInfo, container, playButton, timeline, playhead, playtime, soundcloudLogo;
 
   loadScript('http://connect.soundcloud.com/sdk.js', init)
 
@@ -34,7 +33,7 @@ var soundCloud = function(_fft_size) {
 
   function createAudioElement(audio_name, _fft_size){
 
-    var audioElement = document.createElement('audio');
+    audioElement = document.createElement('audio');
     audioElement.setAttribute("id", audio_name);
     body.appendChild(audioElement);
     audioElement.width = window.innerWidth;
@@ -90,10 +89,10 @@ var soundCloud = function(_fft_size) {
   // update the track and artist into in the controlPanel
   function populateUI() {
 
-      var artistLink = document.createElement('a');
+      artistLink = document.createElement('a');
       artistLink.setAttribute('href', this.sound.user.permalink_url);
       artistLink.innerHTML = this.sound.user.username;
-        var trackLink = document.createElement('a');
+      trackLink = document.createElement('a');
       trackLink.setAttribute('href', this.sound.permalink_url);
 
       if(this.sound.kind=="playlist"){
@@ -105,13 +104,13 @@ var soundCloud = function(_fft_size) {
       //console.log(this.sound);
       // if no track artwork, use user's avatar.
       var image = this.sound.artwork_url ? this.sound.artwork_url :this.sound.user.avatar_url;
-        this.trackImage.setAttribute('src', image);
-        this.trackImageLink.setAttribute('href', this.sound.permalink_url);
-        this.artistInfo.innerHTML = '';
-        this.artistInfo.appendChild(artistLink);
+        trackImage.setAttribute('src', image);
+        trackImageLink.setAttribute('href', this.sound.permalink_url);
+        artistInfo.innerHTML = '';
+        artistInfo.appendChild(artistLink);
 
-        this.trackInfo.innerHTML = '';
-        this.trackInfo.appendChild(trackLink);
+        trackInfo.innerHTML = '';
+        trackInfo.appendChild(trackLink);
 
         // add a hash to the URL so it can be shared or saved
         var trackToken = this.sound.permalink_url.substr(22);
@@ -128,48 +127,48 @@ var soundCloud = function(_fft_size) {
 
   function createPlayerUI(audioElement) {
 
-      var audioplayer = document.createElement('div');
+      audioplayer = document.createElement('div');
       audioplayer.setAttribute("id", "audioplayer");
       audioplayer.setAttribute("class", "wrapper");
 
-      var trackImageLink = document.createElement('a');
+      trackImageLink = document.createElement('a');
       trackImageLink.setAttribute("id", "trackImageLink");
       audioplayer.appendChild(trackImageLink);
 
-      var trackImage = document.createElement('img');
+      trackImage = document.createElement('img');
       trackImage.setAttribute("id", "trackImage");
       trackImageLink.appendChild(trackImage);
 
-      var trackInfo = document.createElement('div');
+      trackInfo = document.createElement('div');
       trackInfo.setAttribute("id", "trackInfo");
       audioplayer.appendChild(trackInfo);
 
-      var artistInfo = document.createElement('div');
+      artistInfo = document.createElement('div');
       artistInfo.setAttribute("id", "artistInfo");
       audioplayer.appendChild(artistInfo);
 
-      var container = document.createElement('div');
+      container = document.createElement('div');
       container.setAttribute("id", "audiocontainer");
       audioplayer.appendChild(container);
 
-      var playButton = document.createElement('div');
+      playButton = document.createElement('div');
       playButton.setAttribute("id", "playButton");
       playButton.setAttribute("class", "pause");
       container.appendChild(playButton);
 
-      var timeline = document.createElement('div');
+      timeline = document.createElement('div');
       timeline.setAttribute("id", "timeline");
       container.appendChild(timeline);
 
-      var playhead = document.createElement('div');
+      playhead = document.createElement('div');
       playhead.setAttribute("id", "playhead");
       timeline.appendChild(playhead);
 
-      var playtime = document.createElement('span');
+      playtime = document.createElement('span');
       playtime.setAttribute("id", "playtime");
       timeline.appendChild(playtime);
 
-      var soundcloudLogo = document.createElement('img');
+      soundcloudLogo = document.createElement('img');
       soundcloudLogo.setAttribute("id", "soundcloudLogo");
       soundcloudLogo.setAttribute("src", "http://developers.soundcloud.com/assets/logo_black.png");
       audioplayer.appendChild(soundcloudLogo);
@@ -420,4 +419,11 @@ function loadScript(url, callback)
 
     // Fire the loading
     head.appendChild(script);
+}
+
+window.addEventListener('load', init, false )
+// autorun
+
+function init(){
+  sound = new soundCloud();
 }

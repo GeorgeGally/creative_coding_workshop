@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<title>Creative Coding Yea!</title>
+<head>
+    <meta charset="utf-8">
+
+<script language="javascript" src="js/creative_coding.js"></script>
+<script language="javascript" src="js/canvas.js"></script>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+<script>
+
+var ctx = createCanvas("canvas1");
+var x = 0;
+var y = 0;
+var speedx = random(2, 10);
+var speedy = 10;
+var ballsize = 30;
+changeColour();
+
+function draw(){
+
+  //`n           ctx.background(255, 255, 255);
+  moveBall();
+  drawBall();
+
+}
+
+
+function drawBall(){
+  ctx.fillEllipse(x, y, ballsize, ballsize);
+  ctx.fillRect(x+ 100, y, ballsize/2, ballsize/2);
+  ctx.fillRect(x - 100, y, ballsize/2, ballsize/2);
+  ctx.fillRect(x, y-100, ballsize/2, ballsize/2);
+  ctx.fillRect(x, y+100, ballsize/2, ballsize/2);
+}
+
+function moveBall(){
+  x = x + speedx;
+  y = y + speedy;
+
+  if (x < 0 || x > w){
+    speedx = speedx * -1;
+    changeColour();
+    ballsize = random(10, 100);
+  }
+
+  if (y > h || y < 0){
+    speedy = speedy * -1;
+    changeColour();
+    ballsize = random(10, 100);
+  }
+
+}
+
+
+function changeColour(){
+  var r = random(0,255);
+  var g = random(0,255);
+  var b = random(0,155);
+  ctx.fillStyle = rgba(r, g, b, 1);
+}
+
+
+
+</script>
+<!-- <script language="javascript" src="js/soundcloud.js"></script> -->
+</body>
+
+</html>

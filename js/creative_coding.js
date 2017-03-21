@@ -287,6 +287,14 @@ p.background = function (r, g, b, a){
 
 };
 
+p.getCurrentFill = function() {
+  console.log(this.fillStyle);
+  var r = parseInt(this.fillStyle.substring(1,3), 16);
+  var g = parseInt(this.fillStyle.substring(3,5), 16);
+  var b = parseInt(this.fillStyle.substring(5), 16);
+}
+
+
 p.rotateDegrees = function(deg){
   this.rotate(radians(deg));
 }

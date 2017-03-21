@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<title>Creative Coding Yea!</title>
+<head>
+
+<meta charset="utf-8">
+
+<script language="javascript" src="js/creative_coding.js"></script>
+<script language="javascript" src="js/canvas.js"></script>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+<script>
+
+var ctx = createCanvas("canvas1");
+
+var balls = [];
+
+for (var i = 0; i < 100; i++) {
+  balls[i] = new Ball();
+}
+
+
+console.log(balls.length)
+
+console.log(balls)
+
+
+
+
+function draw(){
+  ctx.background(255);
+
+  for (var i = 0; i < balls.length; i++) {
+
+    balls[i].moveBall();
+    balls[i].drawBall();
+
+  }
+
+}
+
+function Ball(){
+    this.x = w/2;
+    this.y = h/2;
+    this.speedx = random(-10,10);
+    this.speedy = random(-10,10);
+    this.ball_size = random(10, 100);
+    this.colour = rgb(random(255));
+
+    this.drawBall = function(){
+        ctx.fillStyle = this.colour;
+        ctx.fillRect(this.x, this.y, this.ball_size, this.ball_size);
+        //ctx.line(0,0,this.x, this.y);
+    }
+    this.moveBall = function(){
+      this.x = this.x + this.speedx;
+      this.y = this.y + this.speedy;
+      this.speedy += 0.99;
+      if(this.x > w || this.x < 0) {
+        this.speedx *=-1;
+      }
+      if(this.y > h || this.y < 0) {
+        this.speedy *=-1;
+      }
+    }
+
+}
+
+
+
+
+</script>
+</body>
+
+</html>

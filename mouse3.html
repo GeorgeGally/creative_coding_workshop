@@ -15,22 +15,19 @@
 <body>
 
 <script>
-
-// ARRAYS
-// NEATENING IT UP T)O GET READY FOR CLASS
-
-
 var ctx = createCanvas("canvas1");
 
-var box = [1, 2, 3, 4]; // elements are sperated by commas
-//console.log(box)
+function draw(){
+  ctx.background(255, 0.1);
+  for (var i = 0; i < 10; i++) {
+    var grey = random(255);
+    var position = i * 100;
+    var ball_size = random(30, 100);
+    ctx.fillStyle = rgb(grey, grey, grey, 0.4);
+    ctx.fillEllipse(position, h/2, ball_size, ball_size);
+  }
+}
 
-box.splice(2,2);
-console.log(box)
-// my_array.unshift(2);
-// console.log(my_array) // [2, 3, 4, 5]
-// my_array[0] = "bob";
-// console.log(my_array) // ["bob", 3, 4, 5]
 
 </script>
 

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<title>Creative Coding Yea!</title>
+<head>
+
+<meta charset="utf-8">
+
+<script language="javascript" src="js/creative_coding.js"></script>
+<script language="javascript" src="js/canvas.js"></script>
+<script language="javascript" src="js/vector.js"></script>
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+<script>
+
+var ctx = createCanvas("canvas1");
+var balls = [];
+var number_of_balls = 100;
+var max_balls = 2000;
+
+function Particle(_x, _y){
+  this.x = _x;
+  this.y = _y;
+  this.sz = 10;
+  this.speedx = random(-2, 2);
+  this.speedy = random(-8, 2);
+  this.colour = rgb(random(255), 0, 0);
+  this.b = 0;
+}
+
+
+function addBalls(_x, _y){
+  var _b = new Particle(_x, _y)
+  balls.push(_b);
+  //console.log(balls.length);
+  if (balls.length > max_balls) {
+    balls.splice(0,1);
+  }
+}
+
+
+var pixel_size = 20;
+
+function draw(){
+
+  ctx.background(255,255,255);
+  var motion = motionDetection(pixel_size);
+  //console.log(m);
+  for (var i = 0; i < motion.length; i++) {
+    var m = motion[i];
+    ctx.fillStyle = "blue";
+    addBalls(m.x, m.y);
+    //ctx.fillRect(m.x, m.y, pixel_size, pixel_size);
+  }
+
+  if(mouseMoved == true) {
+    addBalls(mouseX, mouseY);
+  }
+
+for (var i = 0; i < balls.length; i++) {
+   update(balls[i]);
+   render(balls[i]);
+}
+
+} // end draw
+
+
+function render(_b){
+  ctx.fillStyle = _b.colour;
+  ctx.fillEllipse(_b.x, _b.y, _b.sz, _b.sz);
+}
+
+
+function update(_b){
+  _b.x += _b.speedx;
+  _b.y += _b.speedy;
+  _b.speedy += 0.1;
+  if (_b.sz < 50) {
+    _b.sz += 1;
+  }
+
+  if (_b.y > h) {
+    _b.speedy *= -0.8;
+  }
+
+}
+
+</script>
+<script language="javascript" src="js/video.js"></script>
+<script language="javascript" src="js/motion_detection.js"></script>
+
+
+</body>
+
+</html>
