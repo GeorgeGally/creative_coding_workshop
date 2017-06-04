@@ -1,34 +1,34 @@
 <!DOCTYPE html>
 <html>
-<title>Creative Coding Yea!</title>
+<title>LOOPS</title>
 <head>
     <meta charset="utf-8">
-<!-- <script src='http://connect.soundcloud.com/sdk.js'></script> -->
 <script language="javascript" src="../js/creative_coding.js"></script>
 <script language="javascript" src="../js/canvas.js"></script>
 
 <link rel="stylesheet" href="../css/reset.css" type="text/../css" media="screen" />
 <link rel="stylesheet" href="../css/style.css" type="text/../css" media="screen" />
-<!-- <link rel="stylesheet" href="../css/audio.css" type="text/../css" media="screen" /> -->
+
 
 </head>
 <body>
 
 <script>
+
 var ctx = createCanvas("canvas1");
+var spacing = 60;
 
 function draw(){
-  if(!mousePressed) {
-    ctx.background(255);
-  }
-  //for (var i = 0; i < 10; i++) {
-    var grey = random(255);
-    var ball_size = random(30, 100);
-    ctx.fillStyle = rgb(grey, grey, grey, 0.4);
-    ctx.fillEllipse(mouseX, mouseY, ball_size, ball_size);
-  //}
-}
 
+  ctx.background(255);
+
+  for (var i = 0; i < w; i+=spacing) {
+    var sz = 50 + Math.sin(frameCount/100 + i)*50;
+    ctx.fillStyle  = rgba(0, 174,239, map(sz, 50, 100, 0,1));
+    ctx.centreFillRect(i, h/2 + Math.sin((frameCount + i)/100) * h/2, sz, sz);
+  }
+
+}
 
 </script>
 

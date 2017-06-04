@@ -7,8 +7,8 @@
 <script language="javascript" src="../js/creative_coding.js"></script>
 <script language="javascript" src="../js/canvas.js"></script>
 
-<link rel="stylesheet" href="../css/reset.../css" type="text/../css" media="screen" />
-<link rel="stylesheet" href="../css/style.../css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/reset.css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/style.css" type="text/../css" media="screen" />
 
 
 </head>
@@ -28,7 +28,7 @@ function addBall(){
     y: mouseY,
     speed_x: random(-5, 5),
     speed_y: random(-5, 5),
-    size: 20,
+    size: 10,
     colour: rgb(0)
   }
   balls.push(ball);
@@ -59,7 +59,7 @@ function moveBall(){
 
     if (bounce(b.y, 0 ,h, b.size)) {
       b.speed_y *=-1;
-      b.colour = rgb(0, randomInt(255),randomInt(55));
+      b.colour = rgb(0, randomInt(100, 255),randomInt(55));
     }
 
   }

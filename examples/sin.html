@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>The Canvas - Creative Coding Yea!</title>
+<title>Creative Coding Yea!</title>
 <head>
 
 <meta charset="utf-8">
@@ -8,45 +8,34 @@
 <script language="javascript" src="../js/creative_coding.js"></script>
 <script language="javascript" src="../js/canvas.js"></script>
 
-<link rel="stylesheet" href="../css/reset.../css" type="text/../css" media="screen" />
-<link rel="stylesheet" href="../css/style.../css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/reset.css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/style.css" type="text/../css" media="screen" />
 
 </head>
 <body>
 
 <script>
 
+
+my_string = "bob";
+my_number = 5;
+my_output = my_string + my_number;
+my_output +=5;
+console.log(my_output);
+
+
 var ctx = createCanvas("canvas1");
-
-var my_colour = rgba(0,0,0,0.8);
-
-// what do i want to repeat
-// what do i want to change each time
-// how many times do i want it to repeat
-
-var blocksize = 20;
-  var counter = 0;
-  var y = 110;
-  var x = 0;
-  var r = 300;
+var radius = 200;
 
 function draw(){
-  ctx.background(245);
-  ctx.fillStyle = "black";
-  ctx.fillPolygon(w/2, h/2, 5, 100);
-  for (var i = 0; i < w; i+=5) {
-    x = w/2 + Math.cos(counter + i/1000)* r;
-    y = h/2 + Math.sin(counter + i/1000) * r;
-    ctx.fillPolygon(x, y, 8, blocksize-1);
-    counter = counter + 1;
-  }
+  
+  ctx.background(0);
+  ctx.fillStyle  = rgb(0,174,239);
+  var x = w/2 + Math.cos(frameCount/50) * w/2;
+  var y = h/2;
+  ctx.fillEllipse(x, y, 120, 120);
 
-
-}
-
-
-
-
+} // end draw
 
 
 </script>

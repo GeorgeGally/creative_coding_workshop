@@ -8,8 +8,8 @@
 <script language="javascript" src="../js/creative_coding.js"></script>
 <script language="javascript" src="../js/canvas.js"></script>
 
-<link rel="stylesheet" href="../css/reset.../css" type="text/../css" media="screen" />
-<link rel="stylesheet" href="../css/style.../css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/reset.css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/style.css" type="text/../css" media="screen" />
 
 </head>
 <body>
@@ -17,6 +17,9 @@
 <script>
 
 var ctx = createCanvas("canvas1");
+
+ctx.font = "30px arial";
+ctx.textAlign = "center";
 
 // w or width  = width of canvas
 // h or height = height of canvas
@@ -33,6 +36,12 @@ var ctx = createCanvas("canvas1");
 // syntax: fillEllipse(x, y, w, h)
 
 
+function draw(){
+  if(mouseDown == 1) {
+    ctx.background(0,0,0);
+  } else {
+    ctx.background(255,255,255);
+  }
 // TOP LEFT
 // fillStyle = rgba(red, blue, green)
 ctx.fillStyle = rgb(255, 0, 0);
@@ -55,6 +64,13 @@ ctx.fillEllipse(w, h, 100, 100);
 ctx.fillStyle = rgba(255, 200, 0, 0.4);
 ctx.fillEllipse(w/2, h/2, 100, 100);
 ctx.fillEllipse(w/2, h/2, 50, 50);
+
+ctx.fillStyle = "red";
+ctx.fillText("mouseX: " + mouseX + " mouseY: " + mouseY, w/2, h/2 + 100);
+//console.log("mouseX:" + mouseX + " mouseY: " + mouseY);
+
+}
+
 
 </script>
 </body>

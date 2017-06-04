@@ -8,8 +8,8 @@
 <script language="javascript" src="../js/creative_coding.js"></script>
 <script language="javascript" src="../js/canvas.js"></script>
 
-<link rel="stylesheet" href="../css/reset.../css" type="text/../css" media="screen" />
-<link rel="stylesheet" href="../css/style.../css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/reset.css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/style.css" type="text/../css" media="screen" />
 
 </head>
 <body>
@@ -26,6 +26,7 @@ function draw(){
 
   // only draw the line if our mouse is pressed
   if (mousePressed) {
+
     // syntax: line(x1, y1, x2, y2)
     ctx.line(mouseX, mouseY, oldX, oldY);
 
