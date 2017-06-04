@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>Creative Coding Yea! - Triangles</title>
+<head>
+
+<meta charset="utf-8">
+
+<script language="javascript" src="js/creative_coding.js"></script>
+<script language="javascript" src="js/canvas.js"></script>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+<script>
+
+var ctx = createCanvas("canvas1");
+ctx.fillStyle = rgba(0, 0.2);
+
+//// there are a few ways to create triangles ////
+// any shaped triagle
+// ctx.fillTriangle(x1, y1, x2, y2, x3, y3);
+// ctx.strokeTriangle(x1, y1, x2, y2, x3, y3);
+// equidistant triangle
+// ctx.fillEqTriangle(x, y, size);
+// ctx.strokeEqTriangle(x, y, size);
+// equidistant triangle facing down - use true or 1
+// ctx.fillEqTriangle(x, y, size, 1);
+// ctx.strokeEqTriangle(x, y, size, 1);
+// can ue a polygon to make one also
+// ctx.fillPolygon(x, y, size, 3);
+// ctx.strokeEqTriangle(x, y, size, 3);
+
+for (var i = 0; i < 500; i++) {
+  var down = randomInt(1);
+  //randomStricky() puts things to the nearest value, in this case every 50 pixels
+  //randomStricky(min, max, sticky)
+  //randomStricky(max, sticky) - this will assume the min value is 0
+  var x = randomSticky(w, 50);
+  var y = randomSticky(w, 25);
+  ctx.fillEqTriangle(x, y, 50, down);
+}
+
+
+
+
+
+</script>
+</body>
+
+</html>

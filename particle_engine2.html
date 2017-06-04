@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<title>Creative Coding Yea!</title>
+<head>
+
+<meta charset="utf-8">
+
+<script language="javascript" src="js/creative_coding.js"></script>
+<script language="javascript" src="js/canvas.js"></script>
+
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+
+</head>
+<body>
+
+<script>
+
+var ctx = createCanvas("canvas1");
+var balls = [];
+var number_of_balls = 100;
+var max_balls = 1000;
+
+
+
+function draw(){
+
+  ctx.background(255,255,255);
+
+  if(mouseMoved == true) {
+    addParticle(mouseX, mouseY);
+  }
+
+for (var i = 0; i < balls.length; i++) {
+   update(balls[i]);
+   render(balls[i]);
+}
+
+} // end draw
+
+
+function addParticle(_x, _y){
+  var _b = new Particle(_x, _y)
+  balls.push(_b);
+  //console.log(balls.length);
+  if (balls.length > max_balls) {
+    balls.splice(0,1);
+  }
+}
+
+function Particle(_x, _y){
+  this.x = _x;
+  this.y = _y;
+  this.sz = random(10, 40);
+  this.speedx = random(-2, 2);
+  this.speedy = random(-8, 2);
+  this.colour = rgb(random(255), 0, 0);
+  this.b = 0;
+}
+
+
+function render(_b){
+  ctx.fillStyle = _b.colour;
+  ctx.fillEllipse(_b.x, _b.y, _b.sz, _b.sz);
+}
+
+
+function update(_b){
+  _b.x += _b.speedx;
+  _b.y += _b.speedy;
+  _b.speedy += 0.1;
+  if (_b.sz > 1) {
+    _b.sz -= 0.1;
+  }
+
+  if (_b.y > h) {
+    _b.speedy *= -0.8;
+  }
+
+}
+
+</script>
+</body>
+
+</html>

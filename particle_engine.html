@@ -2,8 +2,7 @@
 <html>
 <title>Creative Coding Yea!</title>
 <head>
-
-<meta charset="utf-8">
+    <meta charset="utf-8">
 
 <script language="javascript" src="js/creative_coding.js"></script>
 <script language="javascript" src="js/canvas.js"></script>
@@ -17,68 +16,63 @@
 <script>
 
 var ctx = createCanvas("canvas1");
-var balls = [];
-var number_of_balls = 100;
-var max_balls = 1000;
 
-function Particle(_x, _y){
-  this.x = _x;
-  this.y = _y;
-  this.sz = random(10, 40);
-  this.speedx = random(-2, 2);
-  this.speedy = random(-8, 2);
-  this.colour = rgb(random(255), 0, 0);
-  this.b = 0;
+var number_of_balls = 15;
+var particles = [];
+
+for (var i = 0; i < number_of_balls; i++) {
+  addParticle();
 }
 
+console.log(particles);
 
-function addBalls(_x, _y){
-  var _b = new Particle(_x, _y)
-  balls.push(_b);
-  //console.log(balls.length);
-  if (balls.length > max_balls) {
-    balls.splice(0,1);
+// think of an function like a machine
+function addParticle(){
+
+  // we create a ball object - an object has properties
+  var particle = {
+    x:  width/2,
+    y: height/2,
+    speed_x: random(-5, 5),
+    speed_y: random(-5, 5),
+    size: 20
   }
+
+  particles.push(particle);
 }
-
-
 
 
 function draw(){
 
-  ctx.background(255,255,255);
+  ctx.background(0);
 
-  if(mouseMoved == true) {
-    addBalls(mouseX, mouseY);
-  }
+  ctx.fillStyle = "#00aeef"
 
-for (var i = 0; i < balls.length; i++) {
-   update(balls[i]);
-   render(balls[i]);
-}
+  for (var i = 0; i < number_of_balls; i++) {
+    p = particles[i];
+
+    p.x += p.speed_x;
+    p.y += p.speed_y;
+
+    // we adjust the hit area because shere is drawn from the centre
+    if (p.x > width - p.size/2  || p.x < p.size/2  ) {
+      p.speed_x = p.speed_x *-1;
+    }
+
+    if (p.y > height - p.size/2 || p.y < p.size/2 ) {
+      p.speed_y = p.speed_y *-1;
+    }
+
+    ctx.fillEllipse(p.x, p.y, p.size, p.size);
+
+
+  } // end for loop
+
 
 } // end draw
 
 
-function render(_b){
-  ctx.fillStyle = _b.colour;
-  ctx.fillEllipse(_b.x, _b.y, _b.sz, _b.sz);
-}
 
-
-function update(_b){
-  _b.x += _b.speedx;
-  _b.y += _b.speedy;
-  _b.speedy += 0.1;
-  if (_b.sz > 1) {
-    _b.sz -= 0.1;
-  }
-
-  if (_b.y > h) {
-    _b.speedy *= -0.8;
-  }
-
-}
 
 </script>
 </body>

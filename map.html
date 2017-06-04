@@ -17,33 +17,15 @@
 <script>
 
 var ctx = createCanvas("canvas1");
-var my_red = 0;
-var my_green = 0;
-var my_blue = 0;
-
-
 
 function draw(){
 
-  ctx.background(mouseX,mouseY,100,0.1);
-  ctx.lineWidth = 1+ Math.floor(mouseX-oldMouseX);
-  my_red = my_red + 10;
-  my_green = my_green + 10;
-  my_blue = my_blue + 10;
-  ctx.strokeStyle = rgb(my_red, my_green, my_blue);
-
-  if (mousePressed) {
-  ctx.line(mouseX, mouseY, oldMouseX, oldMouseY);
-  }
-  if (my_red > 255) {
-    my_red = 0;
-  }
-  if (my_green > 255) {
-    my_green = 0;
-  }
-  if (my_blue > 255) {
-    my_blue = 0;
-  }
+  // map one value to the range of another
+  // map(input, input_min, input_max, output_min, output_max)
+  var r = map(mouseX, 0, w, 0, 255);
+  var g = map(mouseY, 0, w, 0, 255);
+  ctx.fillStyle = rgb(r, g, 100, 0.1)
+  ctx.fillRect(0, 0, w, h);
 
 }
 

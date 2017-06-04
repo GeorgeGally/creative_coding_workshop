@@ -49,10 +49,21 @@ var ctx = createCanvas("canvas1");
 // ctx.background(r,g,b);
 // ctx.background(black);
 
-
-
 function draw(){
   ctx.background(255,255,255);
+
+  // colournames;
+  ctx.fillStyle = "orange";
+  ctx.fillRect(100, 200, 100, 100);
+
+  // rgb(r,g,b);
+  ctx.fillStyle = rgb(0, 200, 0);
+  ctx.fillRect(200, 200, 100, 100);
+
+  // rgb(r,g,b,a);
+  ctx.fillStyle = rgb(200, 0, 0, 0.5);
+  ctx.fillRect(250, 250, 100, 100);
+
 
 } // end draw
 

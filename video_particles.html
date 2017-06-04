@@ -32,7 +32,7 @@ function update(){
   motion = motionDetection(block_size);
   //ctx.drawImage(video, 0,0, w, h);
 
-  for (var i = 0; i < motion.length; i++) {
+  for (var i = motion.length-1; i > 0 ; i--) {
     m = motion[i];
     balls.push(new Ball(m.x, m.y, i));
     if (balls.length > maxballs) {

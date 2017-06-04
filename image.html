@@ -21,9 +21,9 @@ var ctx = createCanvas("canvas1");
 
 function draw(){
 
-  //ctx.background(250);
+  ctx.background(0, 0.02);
   if(mouseMoved == true){
-    ctx.drawImage(smile, mouseX, mouseY);
+    ctx.drawImage(smile, mouseX - smile.width/2, mouseY - smile.height/2);
   }
 
 }

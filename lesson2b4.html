@@ -46,10 +46,10 @@ var ctx = createCanvas("canvas1");
 // }
 
 function draw(){
-  ctx.background(0, 0.01);
-  var size = random(200);
+  ctx.background(0, 0.1);
+  var size = random(20);
   var y = random(h);
-  var step = random(2, 200);
+  var step = random(40, 100);
   for (var i = 0; i < w; i+=step) {
     ctx.fillStyle = "black";
     ctx.fillEllipse(i, y, size*1.1, size*1.1);

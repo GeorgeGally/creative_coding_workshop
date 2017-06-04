@@ -18,25 +18,16 @@
 
 var ctx = createCanvas("canvas1");
 
+
 function draw(){
+    //ctx.clearRect(0, 0, w, h);
+    var x = random(w);
+    var sz = random(3);
+    var r = randomInt(255);
 
-  //ctx.background(255)
-
-    if (mousePressed) {
-      drawBall();
-    }
-
+    ctx.fillStyle = rgb(0, 0, 0, 0.5);
+    ctx.fillRect(x, 0, sz, h);
 }
-
-function drawBall(){
-  ctx.fillStyle = rgb(0);
-  var ball_size = 5 + mouseX - oldMouseX;
-  //console.log(mouseX + " : " + oldMouseX);
-  ctx.lineWidth = ball_size;
-  ctx.line(mouseX, mouseY, oldMouseX, oldMouseY);
-  //ctx.fillEllipse(mouseX, mouseY, ball_size, ball_size);
-}
-
 
 
 </script>

@@ -1,36 +1,52 @@
 <!DOCTYPE html>
 <html>
-<title>Creative Coding Yea!</title>
+<title>Creative Coding Yea! - Co-ordinates</title>
 <head>
-    <meta charset="utf-8">
-<!-- <script src='http://connect.soundcloud.com/sdk.js'></script> -->
+
+<meta charset="utf-8">
+
 <script language="javascript" src="js/creative_coding.js"></script>
 <script language="javascript" src="js/canvas.js"></script>
 
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-<!-- <link rel="stylesheet" href="css/audio.css" type="text/css" media="screen" /> -->
 
 </head>
 <body>
 
 <script>
+
+// mouseX and mouseY give you the mouse posistion
+// in pure javascript you'd write it like so:
+// window.addEventListener('mousemove', function(e) {
+//   mouseX = e.clientX;
+//   mouseY = e.clientY;
+// });
+
+
 var ctx = createCanvas("canvas1");
+ctx.font = "30px arial";
+ctx.textAlign = "center";
 
 function draw(){
-  if(mouseMoved == true) {
-    var red = random(255);
-    var green = random(255);
-    var blue = random(255);
-    var ball_size = random(30, 100);
-    ctx.fillStyle = rgb(red, blue, green);
-    ctx.fillEllipse(mouseX, mouseY, ball_size, ball_size);
+
+  if(mouseDown == 1) {
+    ctx.background(0,0,0);
+  } else {
+    ctx.background(255,255,255);
   }
+
+  ctx.fillStyle = "red";
+  ctx.fillText("mouseX: " + mouseX + " mouseY: " + mouseY, w/2, h/2);
+  //console.log("mouseX:" + mouseX + " mouseY: " + mouseY);
+
 }
 
 
-</script>
 
+
+
+</script>
 </body>
 
 </html>

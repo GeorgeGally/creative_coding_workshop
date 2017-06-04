@@ -17,7 +17,7 @@
 <script>
 
 var ctx = createCanvas("canvas1");
-var blocsize = 200;
+var blocksize = 100;
 
 
 // map (input_value, min_in, max_in, min_ot, max_out);
@@ -25,10 +25,9 @@ var blocsize = 200;
 function draw(){
   var r = map(mouseX, 0, w, 0, 255);
   var g = map(mouseX, 0, h, 0, 255);
-  ctx.fillStyle = rgb(100, g, 0);
-  ctx.fillEllipse(mouseX, mouseY, blocsize, blocsize);
-  pixelate(10);
-
+  var b = map(mouseY, 0, h, 0, 255);
+  ctx.fillStyle = rgb(r, g, b);
+  ctx.fillEllipse(mouseX, mouseY, blocksize, blocksize);
 }
 
 

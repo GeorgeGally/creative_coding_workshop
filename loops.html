@@ -17,54 +17,37 @@
 
 var ctx = createCanvas("canvas1");
 
-// ctx.fillStyle = "red";
+// for loops are one of your best creative coding tools
+// they allow you to do iterations of a task,
+// usually to draw or address multiple objects
+// ask yourself:
+// how many times do i want it to repeat
+// what do i want to change each time
+// a for loop usually looks like this:
+// for (var i = 0; i < max; i++) {
+//   do something
+// }
+
+// so instead of doing this:
 // ctx.fillRect(100, 100, 20, 20);
 // ctx.fillRect(100, 200, 20, 20);
 // ctx.fillRect(100, 300, 20, 20);
 // ctx.fillRect(100, 400, 20, 20);
 // ctx.fillRect(100, 500, 20, 20);
 
-// what do i want to repeat
-// what do i want to change each time
-// how many times do i want it to repeat
-
-
-// var kitty = 10;
-// kitty=kitty+10;
-// console.log(kitty);
-// kitty=kitty+10;
-// console.log(kitty);
-// kitty=kitty+10;
-// console.log(kitty);
-// kitty=kitty+10;
-// console.log(kitty);
-
-
-
-// for (var kitty = 10; kitty <= 100; kitty=kitty+10) {
-//   console.log(kitty);
+// you can do this
+// for (var i = 100; i <= 500; i+=100) {
+//   ctx.fillRect(100, 500, 20, 20);
 // }
 
-// function draw(){
-//   ctx.background(0);
-//   ctx.fillStyle = "white";
-//   var size = random(100);
-//   var y = random(h);
-//   var step = random(2, 100);
-//   for (var i = 0; i < w; i+=step) {
-//     ctx.centreFillRect(i, y, size, size);
-//   }
-// }
-var step = 120;
-function draw(){
+
   ctx.background(255);
+  for (var i = 0; i < w; i+=50) {
+    ctx.fillStyle = rgba(random(0, 155), 0.5);
+    var sz = random(200);
+    ctx.fillEqTriangle(i, 560 - sz/2, sz);
+  }
 
-  var size = random(50,100);
-  for (var i = 0; i < w; i+=step) {
-    ctx.fillStyle = rgb(i/5, i/10, 0);
-       ctx.fillRect(i-size/2, h/2-size/2, size, size);
-     }
-}
 
 </script>
 
