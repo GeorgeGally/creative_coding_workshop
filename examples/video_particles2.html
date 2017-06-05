@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<title>Creative Coding Yea!</title>
+<head>
+    <meta charset="utf-8">
+<script language="javascript" src="../js/creative_coding.js"></script>
+<script language="javascript" src="../js/canvas.js"></script>
+<script language="javascript" src="../js/vector.js"></script>
+<script language="javascript" src="../js/video.js"></script>
+
+<link rel="stylesheet" href="../css/reset.css" type="text/../css" media="screen" />
+<link rel="stylesheet" href="../css/style.css" type="text/../css" media="screen" />
+
+
+</head>
+<body>
+
+<script>
+
+// doing it the easy way
+
+var ctx = createCanvas("canvas1");
+var block_size = 20;
+var maxballs = 3500;
+var balls = [];
+
+
+function draw(){
+
+  ctx.background(250, 1);
+  checkMotion();
+
+  // we iterate backwards through the object so that we can delete
+  // particles without messing up the loop
+  for (var i = 0; i < balls.length ; i++) {
+  // for (var i = balls.length-1; i >= 0 ; i--) {
+    b = balls[i];
+    moveBall(b);
+    drawBall(b);
+    ctx.fillStyle = b.c;
+
+  } // end for loop
+
+} // end draw
+
+
+function addBall(_x, _y){
+  var ball = {
+    x:_x,
+    y:_y,
+    me: balls.length,
+    sz: 8,
+    speed_x: random(-5, 5),
+    speed_y: random(-5, 5),
+    c: rgb(random(255), random(255), random(255))
+  }
+  balls.push(ball);
+}
+
+
+function drawBall(b){
+    ctx.fillStyle = b.c;
+    ctx.fillEllipse(b.x, b.y, b.sz, b.sz);
+}
+
+
+function moveBall(b){
+
+    b.x += b.speed_x;
+    b.y += b.speed_y;
+    b.sz -= 0.3;
+
+    if (b.sz < 1 || b.x < 0 || b.x > w || b.y < 0  || b.y > h) {
+      removeBall(b);
+    }
+  }
+
+
+
+function checkMotion(){
+
+    motion = motionDetection(block_size);
+    //ctx.drawImage(video, 0,0, w, h);
+
+    for (var i = motion.length-1; i > 0 ; i--) {
+      m = motion[i];
+      addBall(m.x, m.y);
+      if (balls.length > maxballs) {
+      removeBall(balls[balls.length-1]);
+      }
+    } // end for loop
+
+  }
+
+
+
+function removeBall(b){
+  var index = balls.indexOf(b);
+  balls.splice(index, 1);
+}
+
+
+</script>
+
+<script language="javascript" src="../js/motion_detection.js"></script>
+
+</body>
+
+</html>
